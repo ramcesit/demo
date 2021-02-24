@@ -1,0 +1,193 @@
+1. Create a new virtual environment (conda environment) "docedgedet" and activate it.
+
+conda create -n docedgedet python=3.6
+
+conda activate docedgedet
+
+2. Create a new directory "DocumentEdgeDetection" and navigate into it.
+
+3. Download the "TensorFlow Models" from Git.
+
+git clone https://github.com/tensorflow/models.git
+
+
+4. Install necessary libraries. Check the link "https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md"
+
+For CPU
+pip install tensorflow
+
+For GPU
+pip install tensorflow-gpu
+
+# Remaining libraries
+sudo apt-get install protobuf-compiler python-pil python-lxml python-tk
+pip install Cython
+pip install contextlib2
+pip install jupyter
+pip install matplotlib
+pip install pillow
+pip install lxml
+
+
+5. Install the "COCO API installation". Check the link "https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md"
+
+git clone https://github.com/cocodataset/cocoapi.git
+cd cocoapi/PythonAPI
+make
+cp -r pycocotools <path_to_tensorflow>/models/research/
+E.g. 
+cp -r pycocotools /.../DocumentEdgeDetection/models/research/
+
+6. Protobuf Compilation
+
+Navigate back to models/research. Then type the below command "protoc object_detection/protos/*.proto --python_out=."
+
+
+7. Add Libraries to PYTHONPATH
+
+Navigate back to models/research. Then type the below command "export PYTHONPATH=$PYTHONPATH:'pwd':'pwd'/slim"
+
+8. Execute the file "setup.py" inside the models/research and models/research/slim using the command "python setup.py install"
+
+
+9. If all the above steps have been completed, execute the command "python object_detection/builders/model_builder_test.py" by navigating into "models/research". It should return "Ran 16 test"(like this). Then every thing is setup sucessfully.
+
+
+9. Install 'labelImg' by cloning the git "https://github.com/tzutalin/labelImg.git" into "DocumentEdgeDetection". Check the installation instructions @ "https://github.com/tzutalin/labelImg".
+
+
+
+10. To start custom training, the following things have to be done initially.
+
+A. Create a directory "images" inside "/DocumentEdgeDetection/models/research/object_detection". Then create sub-directories namely "train" & "test" & "train_xml" & "test_xml" inside it. Add the respective train and test images into "train" & "test" directories
+
+/DocumentEdgeDetection/models/research/object_detection ---> images
+								|
+								--->train
+				   				|
+				   				-->test
+								|
+								--->train_xml
+				   				|
+				   				-->test_xml
+
+B. Annotate the images inside the "train" & "test" directory. To annotate the images call "python labelImg.py" from "/DocumentEdgeDetection/labelImg".
+
+(docedgedet) user@OptiPlex:~/DocumentEdgeDetection/models/research/object_detection$ python /DocumentEdgeDetection/labelImg/labelImg.py
+
+Save the respective annotations inside "train_xml" & "test_xml" directories respectively.
+
+
+C. Inside from "/DocumentEdgeDetection/models/research/object_detection" execute the script "xml_to_csv.py" (<< python xml_to_csv.py >>). On successful execution, two files namely "train_xml_labels.csv" & "test_xml_labels.csv" will be created inside the "data" directory of "/DocumentEdgeDetection/models/research/object_detection".
+
+
+D. Finally, the respective tfrecords for train & test images can created by executing "" as below from inside "/DocumentEdgeDetection/models/research/object_detection".
+
+-For train data
+python generate_tfrecord.py --csv_input=data/train_xml_labels.csv  --image_dir=images/train --output_path=data/train.record
+ 
+-For test data
+python generate_tfrecord.py --csv_input=data/test_xml_labels.csv  --image_dir=images/test --output_path=data/test.record
+
+
+E. On successful completion of the Step 10.D, "train.record" & "test.record" will be available inside "data" directory.
+
+
+11. Create a ".pbtxt" namely "object-detection.pbtxt" inside "data" directory. Paste the below content inside the file
+
+item {
+  id: 1
+  name: 'docEdge'
+}
+
+
+Note : Here, only one item is detected i.e. "docedge" (the category type, we have created/selected while annotating the images). If, more that one items are there, then id:2 & its name etc...it goes on.
+
+item {
+  id: 1
+  name: 'apple'
+}
+
+item {
+  id: 2
+  name: 'banana'
+}
+
+
+Reference : https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10#6-run-the-training
+
+
+12. Download the model "ssd_mobilenet_v1_coco" from Tensorflow Detection Model Zoo "https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md" into "DocumentEdgeDetection" directory and extract or un-tar it using the command "tar -xzvf ssd_mobilenet_v1_coco_2018_01_28.tar.gz"
+
+13. Move "ssd_mobilenet_v1_coco_2018_01_28" directory into "/DocumentEdgeDetection/models/research/object_detection" directory.
+
+14. Look for the "pipeline.config" file inside "ssd_mobilenet_v1_coco_2018_01_28" and modify the following as required.
+
+num_classes: 1
+num_steps: 100
+num_examples: 22 (Count the no. of test images you have and put the value)
+and in the 
+fine_tune_checkpoint: "/DocumentEdgeDetection/models/research/object_detection/ssd_mobilenet_v1_coco_2018_01_28/model.ckpt"
+  
+train_input_reader {
+  label_map_path: "PATH_TO_BE_CONFIGURED/mscoco_label_map.pbtxt"---------->Map the "object-detection.pbtxt" inside "data" directory
+  tf_record_input_reader {
+    input_path: "PATH_TO_BE_CONFIGURED/mscoco_train.record"--------------->Map the "train.record" inside "data" directory
+  }
+}
+eval_config {
+  num_examples: 22
+  max_evals: 10
+  use_moving_averages: false
+}
+eval_input_reader {
+  label_map_path: "PATH_TO_BE_CONFIGURED/mscoco_label_map.pbtxt"---------->Map the "object-detection.pbtxt" inside "data" directory
+  shuffle: false
+  num_readers: 1
+  tf_record_input_reader {
+    input_path: "PATH_TO_BE_CONFIGURED/mscoco_val.record"----------------->Map the "test.record" inside "data" directory
+  }
+}
+
+
+15. To start the "Custom Training", create a directory "training" inside "object_detection" and from inside "/DocumentEdgeDetection/models/research/object_detection" run the below command
+
+python train.py --logtostderr --train_dir=training/ --pipeline_config_path=ssd_mobilenet_v1_coco_2018_01_28/pipeline.config
+
+
+
+16. After completion of training, "inference graph" needs to be created (which is output of the custom trained model). Create a directory "inference_graph" inside "/DocumentEdgeDetection/models/research/object_detection". Then execute the below command to obtain the inference graph.
+
+python export_inference_graph.py --input_type image_tensor --pipeline_config_path ssd_mobilenet_v1_coco_2018_01_28/pipeline.config --trained_checkpoint_prefix training/model.ckpt-50 --output_directory inference_graph
+
+
+Note : In model.ckpt-XXXX, substitute the largest no. available in "training" directory
+
+
+17. Finally to predict from the trained model, execute the "Doc_edge_detection.py" by modifying the image input name.
+
+18. Vola ! Hurray ! The custom trained RCNN is completed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
