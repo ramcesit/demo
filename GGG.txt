@@ -1,0 +1,54 @@
+Randomized Experiments
+	https://us.sagepub.com/sites/default/files/upm-assets/51116_book_item_51116.pdf
+	https://www.youtube.com/watch?v=bi-LNLrFYcQ&ab_channel=WildAboutStatistics
+
+Quasi-experimental methods
+	https://www.scribbr.com/methodology/quasi-experimental-design/
+	https://www.youtube.com/watch?v=Ji_osZc7z5Q&ab_channel=RossAvilla
+	https://www.youtube.com/watch?v=3N-DKY09GM4&ab_channel=ResearchMethodsandStatistics
+	https://www.youtube.com/watch?v=pZ6_lPpL5SA&ab_channel=SPPUeCDLIC
+
+Philosophy of science
+https://undsci.berkeley.edu/article/philosophy
+https://web.stanford.edu/class/symsys130/Philosophy%20of%20science.pdf
+https://medium.com/the-understanding-project/a-detailed-introduction-to-the-philosophy-of-science-f2dce6e0e5b9
+
+Advanced data visualization
+	https://www.dataversity.net/demystifying-advanced-data-visualization/#
+	https://www.xenonstack.com/blog/data-visualization-techniques-processes-and-solutions/
+
+Science communication
+	https://www.pnas.org/content/110/Supplement_3/14033
+	https://www.northeastern.edu/graduate/blog/tips-for-effective-science-communication/
+	https://www.frontiersin.org/articles/10.3389/fcomm.2019.00055/full
+	https://neuronline.sfn.org/outreach/a-practical-guide-to-science-communication
+
+Introduction to optimization
+	https://www.youtube.com/watch?v=Q2dewZweAtU&ab_channel=AlphaOpt
+	https://www.youtube.com/watch?v=PHapE1hyxJ8&ab_channel=IITKharagpurJuly2018
+
+Calculus
+	https://www.mathsisfun.com/calculus/introduction.html
+	https://betterexplained.com/articles/a-gentle-introduction-to-learning-calculus/
+	http://www-math.mit.edu/~djk/calculus_beginners/
+
+Linear algebra
+	https://machinelearningmastery.com/gentle-introduction-linear-algebra/
+	https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/video-lectures/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
