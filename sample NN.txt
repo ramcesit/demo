@@ -1,3 +1,23 @@
+model = Sequential([
+    Conv2D(16, 3, padding='same', activation='relu', 
+           input_shape=(IMG_HEIGHT, IMG_WIDTH ,3)),
+    MaxPooling2D(),
+    Dropout(0.2),
+    Conv2D(32, 3, padding='same', activation='relu'),
+    MaxPooling2D(),
+    Conv2D(64, 3, padding='same', activation='relu'),
+    MaxPooling2D(),
+    Dropout(0.2),
+    Flatten(),
+    Dense(512, activation='relu'),
+    Dense(1)
+])
+
+
+
+
+
+
 img_path='c:\\data\\cv\\dogs-vs-cats\\test1\\137.jpg' #dog
 # Define a new Model, Input= image 
 # Output= intermediate representations for all layers in the  
