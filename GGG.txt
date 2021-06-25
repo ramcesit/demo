@@ -21,3 +21,12 @@ print('Number of words in first document: ', len(train['Text'][0]))
 print('Number of words in second document: ', len(train['Text'][1]))
 print('Size of vector embeddings: ', train_vec.shape[1])
 print('Shape of vectors embeddings matrix: ', train_vec.shape)
+
+
+
+
+text_tokens = word_tokenize(text)
+
+tokens_without_sw = [word for word in text_tokens if not word in stopwords.words()]
+
+print(tokens_without_sw)
