@@ -1,18 +1,23 @@
-import matplotlib.pyplot as plt
-from skimage import morphology
-import numpy as np
-import skimage
+# Parse documents and print some info
+print('Parsing documents...')
 
-# read the image, grayscale it, binarize it, then remove small pixel clusters
-im = plt.imread('spots.png')
-grayscale = skimage.color.rgb2gray(im)
-binarized = np.where(grayscale>0.1, 1, 0)
-processed = morphology.remove_small_objects(binarized.astype(bool), min_size=2, connectivity=2).astype(int)
+start = time()
 
-# black out pixels
-mask_x, mask_y = np.where(processed == 0)
-im[mask_x, mask_y, :3] = 0
+train_vec = []
+for doc in nlp.pipe(train_cleaned, batch_size=500):
+    if doc.has_vector:
+        train_vec.append(doc.vector)
+    # If doc doesn't have a vector, then fill it with zeros.
+    else:
+        train_vec.append(np.zeros((128,), dtype="float32"))
+        
+# train_vec = [doc.vector for doc in nlp.pipe(train_cleaned, batch_size=500)]
+train_vec = np.array(train_vec)
 
-# plot the result
-plt.figure(figsize=(10,10))
-plt.imshow(im)
+end = time()
+print('Total time passed parsing documents: {} seconds'.format(end - start))
+print('Total number of documents parsed: {}'.format(len(train_vec)))
+print('Number of words in first document: ', len(train['Text'][0]))
+print('Number of words in second document: ', len(train['Text'][1]))
+print('Size of vector embeddings: ', train_vec.shape[1])
+print('Shape of vectors embeddings matrix: ', train_vec.shape)
