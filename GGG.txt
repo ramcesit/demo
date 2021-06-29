@@ -1,73 +1,21 @@
-# Parse documents and print some info
-print('Parsing documents...')
-
-start = time()
-
-train_vec = []
-for doc in nlp.pipe(train_cleaned, batch_size=500):
-    if doc.has_vector:
-        train_vec.append(doc.vector)
-    # If doc doesn't have a vector, then fill it with zeros.
-    else:
-        train_vec.append(np.zeros((128,), dtype="float32"))
-        
-# train_vec = [doc.vector for doc in nlp.pipe(train_cleaned, batch_size=500)]
-train_vec = np.array(train_vec)
-
-end = time()
-print('Total time passed parsing documents: {} seconds'.format(end - start))
-print('Total number of documents parsed: {}'.format(len(train_vec)))
-print('Number of words in first document: ', len(train['Text'][0]))
-print('Number of words in second document: ', len(train['Text'][1]))
-print('Size of vector embeddings: ', train_vec.shape[1])
-print('Shape of vectors embeddings matrix: ', train_vec.shape)
+from bs4 import BeautifulSoup
+from bs4.element import Comment
+import urllib.request
 
 
+def tag_visible(element):
+    if element.parent.name in ['style', 'script', 'head', 'title', 'meta', '[document]']:
+        return False
+    if isinstance(element, Comment):
+        return False
+    return True
 
 
-text_tokens = word_tokenize(text)
+def text_from_html(body):
+    soup = BeautifulSoup(body, 'html.parser')
+    texts = soup.findAll(text=True)
+    visible_texts = filter(tag_visible, texts)  
+    return u" ".join(t.strip() for t in visible_texts)
 
-tokens_without_sw = [word for word in text_tokens if not word in stopwords.words()]
-
-print(tokens_without_sw)
-
-
-
-
-
-
-
-from sklearn.decomposition import LatentDirichletAllocation
-lda_model=LatentDirichletAllocation(n_components=10,learning_method='online',random_state=42,max_iter=1) 
-# n_components is the number of topics
-lda_top=lda_model.fit_transform(vect_text)
-print(lda_top.shape)  # (no_of_doc,no_of_topics)
-print(lda_top)
-
-sum=0
-for i in lda_top[0]:
-  sum=sum+i
-print(sum) 
-
-# composition of doc 0 for eg
-print("Document 0: ")
-for i,topic in enumerate(lda_top[0]):
-  print("Topic ",i,": ",topic*100,"%")
-  
-# most important words for each topic
-vocab = vect.get_feature_names()
-
-for i, comp in enumerate(lda_model.components_):
-    vocab_comp = zip(vocab, comp)
-    sorted_words = sorted(vocab_comp, key= lambda x:x[1], reverse=True)[:10]
-    print("Topic "+str(i)+": ")
-    for t in sorted_words:
-        print(t[0],end=" ")
-    print("\n")  
-  
-  
-
-
-
-
-
+html = urllib.request.urlopen('http://www.nytimes.com/2009/12/21/us/21storm.html').read()
+print(text_from_html(html))
