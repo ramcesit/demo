@@ -1,70 +1,73 @@
-https://www.coursera.org/specializations/analytics-for-decision-making#courses
-Analytics for Decision Making Specialization
+1. Introduction to Predictive Modeling and Analytics
+	[https://www.coursera.org/learn/predictive-modeling-analytics#about]
+	A. Exploratory Data Analysis
+	B. Data Preparation [Extensively]
+	C. Predicting a Continuous Variable
+	D. Predicting a Binary Outcome
+	E. Trees and Other Predictive Models
 
 
-
-1. Introduction to Predictive Modeling
-This course will introduce to you the concepts, processes, and applications of predictive modeling, with a focus on linear regression and time series forecasting models
-The course provides a combination of conceptual and hands-on learning. During the course, we will provide you opportunities to practice predictive modeling techniques
-
-By the end of the course, you will be able to:
-
--          Understand the concepts, processes, and applications of predictive modeling.
--          Understand the structure of and intuition behind linear regression models.
--          Be able to fit simple and multiple linear regression models to data, interpret the results, evaluate the goodness of fit, and use fitted models to make predictions.
--          Understand the problem of overfitting and underfitting and be able to conduct simple model selection.
--          Understand the concepts, processes, and applications of time series forecasting as a special type of predictive modeling.
--          Be able to fit several time-series-forecasting models (e.g., exponential smoothing and Holt-Winter’s method) in Excel, evaluate the goodness of fit, and use fitted models to make forecasts.
--          Understand different types of data and how they may be used in predictive models.
--          Use Excel to prepare data for predictive modeling, including exploring data patterns, transforming data, and dealing with missing values.
-
-1: Simple Linear Regression
-2: Multiple Linear Regression
-3: Data Preparation
-4: Time Series Forecasting
+2. Data Driven Decision Making
+	[https://www.coursera.org/learn/analytics-data-decisions?specialization=data-driven-decision-making]
+	A. Applying Analytics to Implement Solutions
+	B. Data-Driven Operational Excellence
+	C. Applying Data-Driven Decisions
+	D. Case Study : Applied Analytics and Data for Decision Making
 
 
-2. Optimization for Decision Making
-In this data-driven world, companies are often interested in knowing what is the "best" course of action, given the data. For example, manufacturers need to decide how many units of a product to produce given the estimated demand and raw material availability? Should they make all the products in-house or buy some from a third-party to meet the demand? Prescriptive Analytics is the branch of analytics that can provide answers to these questions. It is used for prescribing data-based decisions. The most important method in the prescriptive analytics toolbox is optimization. This course will introduce students to the basic principles of linear optimization for decision-making. Using practical examples, this course teaches how to convert a problem scenario into a mathematical model that can be solved to get the best business outcome. We will learn to identify decision variables, objective function, and constraints of a problem, and use them to formulate and solve an optimization problem
+3. Data Visualization
+	[https://www.coursera.org/learn/understanding-visualization-data]
+	A. Introduction to Data
+	B. Univariante Data
+	C. Multivariante Data
+	[https://www.coursera.org/learn/datavisualization]
+	D. Visualization of Numerical Data
+	E. Visualization of Non-Numerical Data
+	F. Data Visualization with Tableau
+		[https://www.coursera.org/learn/data-visualization-tableau]
+		(1) Getting to Know Tableau for Data Visualization 
+		(2) Let's Make a Viz!
+		(3) Tableau Community Projects and Visualization Best Practices
+		(4) Dynamic Data Manipulation and Presentation in Tableau [https://www.coursera.org/learn/analytics-tableau]
 
-1: Introduction to Linear Programming
-2: Solving Linear Programs
-3: Alternative Specifications & Special Cases in Linear Optimization
-4: Modeling & Solving Linear Problems
-
-
-3. Advanced Models for Decision Making
-Business analysts need to be able to prescribe optimal solution to problems. But analytics courses are often focused on training students in data analysis and visualization, not so much in helping them figure out how to take the available data and pair that with the right mathematical model to formulate a solution. This course is designed to connect data and models to real world decision-making scenarios in manufacturing, supply chain, finance, human resource management, etc. In particular, we understand how linear optimization - a prescriptive analytics method - can be used to formulate decision problems and provide data-based optimal solutions. Throughout this course we will work on applied problems in different industries, such as:
-
-(a) Finance Decisions: How should an investment manager create an optimal portfolio that maximizes net returns while not taking too much risks across various investments?
-
-(b) Production Decisions: Given projected demand, supply of raw materials, and transportation costs, what would be the optimal volume of products to manufacture at different plant locations?
-
-(c) HR Decisions: How many workers need to be hired or terminated over a planning horizon to minimize cost while meeting operational needs of a company?
-
-(c) Manufacturing: What would be the profit maximizing product mix that should be produced, given the raw material availability and customer demand?
-
-1: LPs for Financial Decisions
-2: LP for Staffing Decisions
-3: LP for Production Decisions
-
-
-4. Simulation Models for Decision Making
-This course is primarily aimed at third- and fourth-year undergraduate students or graduate students interested in learning simulation techniques to solve business problems.  
-
-The course will introduce you to take everyday and complex business problems that have no one correct answer due to uncertainties that exist in business environments.  Simulation modeling allows us to explore various outcomes and protect personal or business interests against unwanted outcomes.  We can model uncertainties by using the concepts of probability and stepwise thinking.  Stepwise thinking allows us to break down the problem in smaller components, explore dependencies between related events and allows us to focus on aspects of problem that are prone to changes due to future uncertainties.
-
-The course will introduce you to advanced Excel techniques to model and execute simulation models.  Many of the Excel techniques learned in the course will be useful beyond simulation modeling.  We will learn both Monte Carlo simulation techniques where overall outcome is of primary interest and discrete event simulation where intermediate dependencies between related events might be of interest.  The course will introduce you to several practical issues in simulation modeling that are normally not covered in textbooks.  The course uses a few running examples throughout the course to demonstrate concepts and provide concrete modeling examples.  
-
-After taking the course a student will be able to develop fairly advanced simulation models to explore fairly broad range of business environments and outcomes.
-
-1: Probability Concepts
-2: Probability Distributions and Introduction to Monte Carlo Simulations
-3: Monte Carlo Simulations
-4: Counterfactual Analysis and Discrete Event Simulations
+4. Probability 
+	[https://www.coursera.org/learn/probability-theory-foundation-for-data-science]
+	A. Introdution to Probability 7 Statistics
+	B. Probaility Distribution & Conditional Probability
+	C. Random Variables - Random & Continuous
+	C. Using probability distributions for real world problems [Coursera :  Using probability distributions for real world problems in R]
+		(1) Binomial distribution
+		(2) Poisson distribution
+		(3) Normal distribution
+		(4) Exponential distribution
+		(5) Chi-Square distribution
 
 
+5. Introduction to Drifting in Decision Making
+	A. Data Drifting
+	B. Model Drifting
 
+
+6. Optimization for Decision Making
+	[https://www.coursera.org/learn/optimization-for-decision-making?specialization=analytics-for-decision-making]
+	A. Introduction to Linear Programming
+	B. Solving Linear Programs
+	B. Alternative Specifications & Special Cases in Linear Optimization
+	D. Modeling & Solving Linear Problems
+
+
+7. Advanced Models for Decision Making
+	A. LPs for Financial Decisions
+	B. LP for Staffing Decisions
+	C. LP for Production Decisions
+
+
+8. Bayesian Learning
+[https://www.coursera.org/learn/bayesian-methods-in-machine-learning?specialization=aml#syllabus]
+A. Introduction to Bayesian methods & Conjugate priors
+B. Expectation-Maximization algorithm
+C. Markov chain & Monte Carlo & Statistical modeling and Monte Carlo estimation[https://www.coursera.org/learn/mcmc-bayesian-statistics]
+D. Gaussian processes & Bayesian optimization
 
 
 
