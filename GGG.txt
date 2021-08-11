@@ -1,36 +1,24 @@
-def image_smoothening(img):
-    ret1, th1 = cv2.threshold(img, 88, 255, cv2.THRESH_BINARY)
-    ret2, th2 = cv2.threshold(th1, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-    blur = cv2.GaussianBlur(th2, (5, 5), 0)
-    ret3, th3 = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-    return th3
-
-
-def remove_noise_and_smooth(file_name):
-    img = cv2.imread(file_name, 0)
-    filtered = cv2.adaptiveThreshold(img.astype(np.uint8), 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 9, 41)
-    kernel = np.ones((1, 1), np.uint8)
-    opening = cv2.morphologyEx(filtered, cv2.MORPH_OPEN, kernel)
-    closing = cv2.morphologyEx(opening, cv2.MORPH_CLOSE, kernel)
-    img = image_smoothening(img)
-    or_image = cv2.bitwise_or(img, closing)
-    return or_image
-    
-    
-    def set_image_dpi(file_path):
-    im = Image.open(file_path)
-    length_x, width_y = im.size
-    factor = min(1, float(1024.0 / length_x))
-    size = int(factor * length_x), int(factor * width_y)
-    im_resized = im.resize(size, Image.ANTIALIAS)
-    temp_file = tempfile.NamedTemporaryFile(delete=False,   suffix='.png')
-    temp_filename = temp_file.name
-    im_resized.save(temp_filename, dpi=(300, 300))
-    return temp_filename
-    
-    
-    
-    
-    
-    
-    
+Python Programming – Basic, Advanced, Data Visualization & Scientific Computing
+1.	Introduction
+2.	Python Basic
+a.	Input & Output Statements
+b.	Data Types
+c.	Operators
+d.	Control Statements – if, for, while
+e.	Functions
+f.	File Handling and Folder Operations
+g.	Regular Expressions
+3.	Python Advanced
+a.	Functional Programming – map, filter, zip, reduce, lambda, comprehensions
+b.	Generator, Decorators, Iterator
+c.	Object Oriented Programming
+i.	Classes & Objects
+ii.	Exceptions & Error Handling 
+d.	Modules and Packages
+e.	Multithreading & Multiprocessing
+4.	Data Visualization
+a.	Matplotlib
+b.	Seaborn
+5.	Scientific Computing 
+a.	Numpy 
+b.	Pandas
