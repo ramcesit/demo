@@ -23,4 +23,4 @@ b.	Seaborn
 a.	Numpy 
 b.	Pandas
 https://demotfgnlp.s3.ap-south-1.amazonaws.com/nlpdemoooooooo.zip
-pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.0/en_core_web_sm-2.2.0.tar.gz
+https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-2.2.0/en_core_web_lg-2.2.0.tar.gz
