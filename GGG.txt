@@ -25,5 +25,3 @@ b.	Pandas
 https://demotfgnlp.s3.ap-south-1.amazonaws.com/nlpdemoooooooo.zip
 https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-2.2.0/en_core_web_lg-2.2.0.tar.gz
 
-
-I have always been passionate about mentoring, having come from an Academia background. This was revived as a result of my involvement with the TFG-AIML community, where I helped fellow team members through various training programs to enhance their AI skills. I am delighted and grateful that our organization has given us these amazing opportunities. Additionally, this platform has helped me to make new connections and broaden my network considerably.
