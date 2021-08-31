@@ -1,27 +1,14 @@
-Python Programming – Basic, Advanced, Data Visualization & Scientific Computing
-1.	Introduction
-2.	Python Basic
-a.	Input & Output Statements
-b.	Data Types
-c.	Operators
-d.	Control Statements – if, for, while
-e.	Functions
-f.	File Handling and Folder Operations
-g.	Regular Expressions
-3.	Python Advanced
-a.	Functional Programming – map, filter, zip, reduce, lambda, comprehensions
-b.	Generator, Decorators, Iterator
-c.	Object Oriented Programming
-i.	Classes & Objects
-ii.	Exceptions & Error Handling 
-d.	Modules and Packages
-e.	Multithreading & Multiprocessing
-4.	Data Visualization
-a.	Matplotlib
-b.	Seaborn
-5.	Scientific Computing 
-a.	Numpy 
-b.	Pandas
-https://demotfgnlp.s3.ap-south-1.amazonaws.com/nlpdemoooooooo.zip
-https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-2.2.0/en_core_web_lg-2.2.0.tar.gz
+import cv2 
+import numpy as np 
 
+fname = "color.png"
+bgray = cv2.imread(fname)[...,0]
+
+blured1 = cv2.medianBlur(bgray,3)
+blured2 = cv2.medianBlur(bgray,51)
+divided = np.ma.divide(blured1, blured2).data
+normed = np.uint8(255*divided/divided.max())
+th, threshed = cv2.threshold(normed, 100, 255, cv2.THRESH_OTSU)
+
+dst = np.vstack((bgray, blured1, blured2, normed, threshed)) 
+cv2.imwrite("dst.png", dst)
