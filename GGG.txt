@@ -1,59 +1,23 @@
-import os
 import numpy as np
 import pandas as pd
-import cv2
-from PIL import Image, ImageEnhance
-import glob
-import progressbar
 
 
-def filenaming(filePath, extension, destPath):
-    try:
-        file_nm = os.path.split(filePath)[1]
-        directory_nm = os.path.split(os.path.split(filePath)[0])[1]
-        new_file = file_nm.split('.')[0]+extension+file_nm.split('.')[1]
-        new_directory_nm = os.path.join(destPath,directory_nm)
-        if os.path.exists(new_directory_nm):
-            new_file_nm = os.path.join(new_directory_nm,new_file)      
-        else:
-            os.mkdir(new_directory_nm)
-            new_file_nm = os.path.join(new_directory_nm,new_file)
-        return (new_file_nm)
-    except:
-        return (0)
+df1 = pd.DataFrame({
+    'Date':['2013-11-24','2013-11-24','2013-11-24','2013-11-24'],
+    'Fruit':['Banana','Orange','Apple','Celery'],
+    'Num':[22.1,8.6,7.6,10.2],
+    'Color':['Yellow','Orange','Green','Green'],
+    })
+
+df2 = pd.DataFrame({
+    'Date':['2013-11-24','2013-11-24','2013-11-24','2013-11-24'],
+    'Fruit':['Banana','Orange','Apple','Celery'],
+    'Num':[22.1,8.6,7.6,10.2],
+    'Color':['Yellow','Orange','Green','Violet'],
+    })
 
 
 
-def imaging(filePath, extension, destPath, sfactor=3):
-    try:
-        img = cv2.imread(filePath)
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        (thresh, img) = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-        img = Image.fromarray(img)
-        enhancer = ImageEnhance.Sharpness(img)
-        img = enhancer.enhance(sfactor)
-        img = np.asarray(img)    
-        dest_filePath = filenaming(filePath, extension, destPath)
-        cv2.imwrite(dest_filePath, img)
-    except:
-        return (0)
-
-
-
-
-extension = '_E.'
-orgnPath = r'E:\Original'
-destPath = r'E:\Enhanced'
-
-
-def imgEnhance(orgnPath, extension, destPath, sfactor=3):
-    for filePath in progressbar.progressbar(glob.glob(os.path.join(orgnPath,'**\*.jpg'))):
-        try:
-            imaging(filePath, extension, destPath, sfactor=3)
-        except:
-            continue
-
-
-
-
-imgEnhance(orgnPath, extension, destPath, sfactor=3)
+dfs_dictionary = {'DF1':df1,'DF2':df2}
+df=pd.concat(dfs_dictionary)
+df.drop_duplicates(keep=False)
