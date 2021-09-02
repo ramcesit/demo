@@ -1,21 +1,11 @@
-def hocr_to_dataframe(fp):
+soup = BeautifulSoup(html)
+divTag = soup.find_all("div", {"class": "tablebox"})
 
-    from lxml import etree
-    import pandas as pd
-    import os
-
-    doc = etree.parse('fp')
-    words = []
-    wordConf = []
-
-    for path in doc.xpath('//*'):
-        if 'ocrx_word' in path.values():
-            conf = [x for x in path.values() if 'x_wconf' in x][0]
-            wordConf.append(int(conf.split('x_wconf ')[1]))
-            words.append(path.text)
-
-    dfReturn = pd.DataFrame({'word' : words,
-                             'confidence' : wordConf})
-
-    return(dfReturn)
-https://zetcode.com/python/beautifulsoup/
+for tag in divTag:
+    tdTags = tag.find_all("td", {"class": "align-right"})
+    for tag in tdTags:
+        print tag.text
+        
+        
+        
+        
