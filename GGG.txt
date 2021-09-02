@@ -18,3 +18,4 @@ def hocr_to_dataframe(fp):
                              'confidence' : wordConf})
 
     return(dfReturn)
+https://zetcode.com/python/beautifulsoup/
