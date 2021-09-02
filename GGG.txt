@@ -1,23 +1,20 @@
-import numpy as np
-import pandas as pd
+def hocr_to_dataframe(fp):
 
+    from lxml import etree
+    import pandas as pd
+    import os
 
-df1 = pd.DataFrame({
-    'Date':['2013-11-24','2013-11-24','2013-11-24','2013-11-24'],
-    'Fruit':['Banana','Orange','Apple','Celery'],
-    'Num':[22.1,8.6,7.6,10.2],
-    'Color':['Yellow','Orange','Green','Green'],
-    })
+    doc = etree.parse('fp')
+    words = []
+    wordConf = []
 
-df2 = pd.DataFrame({
-    'Date':['2013-11-24','2013-11-24','2013-11-24','2013-11-24'],
-    'Fruit':['Banana','Orange','Apple','Celery'],
-    'Num':[22.1,8.6,7.6,10.2],
-    'Color':['Yellow','Orange','Green','Violet'],
-    })
+    for path in doc.xpath('//*'):
+        if 'ocrx_word' in path.values():
+            conf = [x for x in path.values() if 'x_wconf' in x][0]
+            wordConf.append(int(conf.split('x_wconf ')[1]))
+            words.append(path.text)
 
+    dfReturn = pd.DataFrame({'word' : words,
+                             'confidence' : wordConf})
 
-
-dfs_dictionary = {'DF1':df1,'DF2':df2}
-df=pd.concat(dfs_dictionary)
-df.drop_duplicates(keep=False)
+    return(dfReturn)
